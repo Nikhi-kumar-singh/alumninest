@@ -1,0 +1,152 @@
+<% layout('layouts/boilerplate') %>
+<body class="a-body">
+    <div class="container mt-5 mb-3">
+        <div class="alumni container p-4">
+            <h3 class="text-center mb-4 head-h2">Alumni Registration Form</h3>
+            <form action="/alumninext/register/alumni/submit" method="POST">
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" name="first_name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" name="last_name" required>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email" name="email" required>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter your password" name="password" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" name="confirm_password" id="confirmPassword" placeholder="Confirm your password"  required>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" id="phone" name="phone_number" placeholder="Enter your phone number" required>
+                </div>
+
+                <div class="gender-section">
+                    <label class="form-label">Gender</label>
+                    <div>
+                        <input type="radio" class="btn-check" name="gender" id="Male" value="Male" autocomplete="off" required>
+                        <label class="btn btn-outline-warning gender-label" for="Male">Male</label>
+                
+                        <input type="radio" class="btn-check" name="gender" id="Female" value="Female" autocomplete="off" required>
+                        <label class="btn btn-outline-warning gender-label" for="Female">Female</label>
+                
+                        <input type="radio" class="btn-check" name="gender" id="Other" value="Other" autocomplete="off" required>
+                        <label class="btn btn-outline-warning gender-label" for="Other">Other</label>
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="college" class="form-label">College</label>
+                        <select class="form-select" id="college" name="college_name" required>
+                            <option value="">Select your college</option>
+                            <option value="United Institute of Technology(UIT)">United Institute of Technology(UIT)</option>
+                            <option value="United College of Pharmacy">United College of Pharmacy</option>
+                            <option value="United College of Engineering and Research(UCER)">United College of Engineering and Research(UCER)</option>
+                            <option value="United Institute of Management(FUGS)">United Institute of Management(FUGS)</option>
+                            <option value="Others">Others</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="degree" class="form-label">Degree</label>
+                        <select class="form-select" id="degree" name="degree" required>
+                            <option value="">Select your degree</option>
+                            <option value="B.Tech">B.Tech</option>
+                            <option value="MBA">MBA</option>
+                            <option value="BA">BA</option>
+                            <option value="BCA">BCA</option>
+                            <option value="BCA">MCA</option>
+                            <option value="BCA">M.Tech</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="gradYear" class="form-label">Graduation Year</label>
+                    <input type="number" class="form-control" id="gradYear" name="graduation_year" placeholder="Enter your graduation year" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="alumniId" class="form-label">Alumni ID</label>
+                    <input type="text" class="form-control" id="alumniId" name="alumni_id" placeholder="Enter your alumni ID" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="jobSector" class="form-label">Job Sector</label>
+                    <select class="form-select" id="jobSector" name="job_sector" required>
+                        <option value="">Select your job sector</option>
+                        <option value="Software Development">Software Development</option>
+                        <option value="Information Technology (IT)">Information Technology (IT)</option>
+                        <option value="Mechanical Engineering">Mechanical Engineering</option>
+                        <option value="Civil Engineering">Civil Engineering</option>
+                        <option value="Electrical Engineering">Electrical Engineering</option>
+                        <option value="Pharmaceuticals">Pharmaceuticals</option>
+                        <option value="Healthcare">Healthcare</option>
+                        <option value="Biotechnology">Biotechnology</option>
+                        <option value="Chemical Engineering">Chemical Engineering</option>
+                        <option value="Management Consulting">Management Consulting</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Finance and Banking">Finance and Banking</option>
+                        <option value="Human Resources">Human Resources</option>
+                        <option value="Operations Management">Operations Management</option>
+                        <option value="Entrepreneurship">Entrepreneurship</option>
+                        <option value="Education and Training">Education and Training</option>
+                        <option value="Manufacturing">Manufacturing</option>
+                        <option value="Research and Development (R&D)">Research and Development (R&D)</option>
+                        <option value="Data Science and Analytics">Data Science and Analytics</option>
+                        <option value="Artificial Intelligence and Machine Learning">Artificial Intelligence and Machine Learning</option>
+                        <option value="Digital Marketing">Digital Marketing</option>
+                        <option value="Supply Chain Management">Supply Chain Management</option>
+                        <option value="Telecommunications">Telecommunications</option>
+                        <option value="Public Sector and Government Jobs">Public Sector and Government Jobs</option>
+                        <option value="Automobile Industry">Automobile Industry</option>
+                        <option value="E-commerce">E-commerce</option>
+                        <option value="Construction">Construction</option>
+                        <option value="Environmental Engineering">Environmental Engineering</option>
+                        <option value="Energy Sector">Energy Sector</option>
+                        <option value="Logistics and Transportation">Logistics and Transportation</option>
+                        <option value="Cybersecurity">Cybersecurity</option>
+                        <option value="Public Health">Public Health</option>
+                        <option value="Retail and Sales">Retail and Sales</option>
+                        <option value="Hospitality and Tourism">Hospitality and Tourism</option>
+                        <option value="Project Management">Project Management</option>
+                    </select>
+                </div>
+                
+
+                <div class="mb-3">
+                    <label for="linkedinProfile" class="form-label">LinkedIn Profile (Optional)</label>
+                    <input type="url" class="form-control" id="linkedinProfile" name="linkedin" placeholder="Enter your LinkedIn profile URL">
+                </div>
+
+                <div class="mb-3">
+                    <label for="profileImage" class="form-label">Profile Picture (Optional)</label>
+                    <input type="file" class="form-control" id="profileImage" name="profile_picture" accept="image/*">
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-register btn-warning">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>

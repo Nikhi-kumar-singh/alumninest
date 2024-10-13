@@ -1,0 +1,21 @@
+footer{
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+
+footer {
+  margin-top: auto;
+}
+.useful-links{
+ font-size: 0.75rem;
+}
+
+.copyright{
+    font-size:0.76rem;
+}
+.footer-color{
+    background-color: rgb(16, 15, 15);
+}

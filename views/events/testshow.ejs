@@ -1,0 +1,28 @@
+
+
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Events</h2>
+        
+        <% Object.keys(groupedEvents).forEach(category => { %>
+            <h3 class="mt-4"><%= category %></h3>
+            <div class="row mb-4">
+                <% groupedEvents[category].forEach(event => { %>
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="<%= event.image %>" class="card-img-top" alt="<%= event.title %>">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= event.title %></h5>
+                                <p class="card-text"><%= event.location %></p>
+                                <p class="card-text">Start: <%= new Date(event.startDateTime).toLocaleString() %></p>
+                                <p class="card-text">End: <%= new Date(event.endDateTime).toLocaleString() %></p>
+                                <a href="/event/<%= event._id %>" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        <% }) %>
+        
+    </div>
+</body>

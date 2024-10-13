@@ -1,0 +1,114 @@
+<% layout('layouts/boilerplate') %>
+
+<body class="a-body">
+    <div class="container mt-5 mb-3">
+        <div class="alumni container p-4">
+            <h2 class="text-center mb-4">Student Registration Form</h2>
+            <form action="/alumninext/register/student/submit" method="POST">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="firstName" name="first_name" placeholder="Enter your first name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" name="last_name" placeholder="Enter your last name" required>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmPassword" name="password_confirm" placeholder="Confirm your password" required>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" id="phone" name="phone_number" placeholder="Enter your phone number" required>
+                </div>
+
+                <div class="gender-section">
+                    <label class="form-label">Gender</label>
+                    <div>
+                        <input type="radio" class="btn-check" name="gender" value="Male" id="male" autocomplete="off" required>
+                        <label class="btn btn-outline-warning gender-label" for="male">Male</label>
+
+                        <input type="radio" class="btn-check" name="gender" value="Female" id="female" autocomplete="off" required>
+                        <label class="btn btn-outline-warning gender-label" for="female">Female</label>
+
+                        <input type="radio" class="btn-check" name="gender" value="Other" id="other" autocomplete="off" required>
+                        <label class="btn btn-outline-warning gender-label" for="other">Other</label>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="college" class="form-label">College</label>
+                        <select class="form-select" name="college_name" id="college" required>
+                            <option value="">Select your college</option>
+                            <option value="United Institute of Technology(UIT)">United Institute of Technology(UIT)</option>
+                            <option value="United College of Engineering and Research(UCER)">United College of Engineering and Research</option>
+                            <option value="United College of Pharmacy">United College of Pharmacy</option>
+                            <option value="United Institute of Management(FUGS)">United Institute of Management(FUGS)</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="degree" class="form-label">Degree</label>
+                        <select class="form-select" name="degree" id="degree" required>
+                            <option value="">Select your degree</option>
+                            <option value="B.Tech">B.Tech</option>
+                            <option value="BBA">BBA</option>
+                            <option value="BCA">BCA</option>
+                            <option value="B Pharma">B Pharma</option>
+                            <option value="MCA">MCA</option>
+                            <option value="M.Tech">M.Tech</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="enrollmentYear" class="form-label" name="enrollment_year" >Enrollment Year</label>
+                    <input type="number" class="form-control" id="enrollmentYear" placeholder="Enter your enrollment year" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="studentId" class="form-label">Student ID</label>
+                    <input type="text" class="form-control" id="studentId" name="student_id" placeholder="Enter your student ID" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="degreeOfProgram" class="form-label">Degree of Program</label>
+                    <input type="text" class="form-control" id="degreeOfProgram" name="degree_of_program" placeholder="Enter your degree of program" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="linkedinProfile" class="form-label">LinkedIn Profile (Optional)</label>
+                    <input type="url" class="form-control" id="linkedinProfile" name="linkedin" placeholder="Enter your LinkedIn profile URL">
+                </div>
+
+                <div class="mb-3">
+                    <label for="imageUpload" class="form-label">Upload Image</label>
+                    <input type="file" class="form-control" id="imageUpload" name="profile_picture" accept="image/*" required>
+                    <small class="form-text text-muted">Please upload a clear image of yourself.</small>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-register">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
