@@ -1,11 +1,16 @@
 const mongoose = require("mongoose");
 
 const alumniSchema = new mongoose.Schema({
+  type: { 
+    type: String, 
+    default: 'Alumni'  // Store 'Alumni' as a default value
+  },
     name: {
       first_name: { type: String, required: true },
       last_name: { type: String, required: true }
     },
     email: { type: String, required: true, unique: true },
+    username:{type:String, required:true, unique:true},
     password: { type: String, required: true },  // Store hashed password
     phone_number: { type: String, required: true },
     gender: { type: String, enum: ['Male', 'Female', 'Other'], required: true },
@@ -14,6 +19,7 @@ const alumniSchema = new mongoose.Schema({
       type: Number,  
       min: 0   // Ensures only natural numbers (1 and above) are allowed 
     },
+
     job_sector: {
         type: String,
         enum: [

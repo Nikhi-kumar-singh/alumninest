@@ -1,0 +1,21 @@
+<%- layout('layouts/boilerplate') %>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Job Listings</h2>
+        <div class="row">
+            <% allJob.forEach(function(job) { %>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= job.job_title %></h5>
+                        <p class="card-text"><strong>Company:</strong> <%= job.company_name %></p>
+                        <p class="card-text"><strong>Description:</strong> <%= job.description %></p>
+                        <p class="card-text"><strong>Last Registration Date:</strong> <%= job.last_registration_date.toLocaleDateString() %></p>
+                        <p class="card-text"><strong>Job Link:</strong> <a href="<%= job.job_link %>" target="_blank">View Job</a></p>
+                    </div>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+    </div>
+</body>

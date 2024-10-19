@@ -1,0 +1,237 @@
+
+.job-form {
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 2rem;
+}
+.form-label {
+    color: white;
+}
+.form-control, .form-select {
+    background-color: rgba(50, 50, 50, 0.7);
+    color: white;
+    border: 1px solid transparent;
+    transition: border-color 0.3s;
+}
+.form-control:hover, .form-select:hover {
+    border-color: #20B2AA;
+}
+.form-control::placeholder, .form-select::placeholder {
+    color: grey;
+}
+h2 {
+    color: #20B2AA;
+}
+.btn-submit {
+    background-color: #20B2AA;
+    color: black;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+.btn-submit:hover {
+    background-color: #1c9c8c;
+    transform: translateY(-2px);
+}
+
+/* abvp */
+
+/* Footer */
+.f-info-links a{
+    text-decoration: none;
+    color: #020202;
+    
+}
+
+.f-info-links a :hover{
+    text-decoration: underline;
+}
+
+.f-info-links,
+.f-info-socials, .f-info-brand {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: aliceblue;
+
+}
+
+.f-info-socials i{
+    font-size: 1.2rem;
+    margin-right: 1rem;
+ 
+}
+
+.f-info{
+    text-align: center;
+    display: flex;
+    background-color: #060606;
+    height:8rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;
+    margin-top: auto;
+
+
+     
+}
+
+
+/* navbar */
+
+.n-body {
+    transition: background-color 0.3s, color 0.3s;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.navbar {
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.85); /* Semi-transparent black navbar */
+    transition: box-shadow 0.3s;
+}
+
+.navbar:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-nav {
+    flex-direction: row; /* Align items in a row */
+    justify-content: center; /* Center align the items */
+    width: 100%; /* Full width for proper centering */
+}
+
+.nav-link {
+    color: white;
+    position: relative; /* Position relative for the underline effect */
+    margin: 0 20px; /* Space between sections */
+    transition: color 0.3s;
+}
+
+.nav-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #c65d3a; /* Dark orange underline color */
+    transition: width 0.3s;
+    position: absolute;
+    left: 50%;
+    bottom: -5px; /* Adjust position */
+    transform: translateX(-50%);
+}
+
+.nav-link:hover {
+    color: #c65d3a; /* Dark orange text color on hover */
+}
+
+.nav-link:hover::after {
+    width: 100%; /* Full width on hover */
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.toggle-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px; /* Space between toggle button and logo */
+}
+
+.toggle-line {
+    width: 25px; /* Reduced width */
+    height: 2px; /* Reduced height */
+    background-color: #c65d3a; /* Dark orange toggle lines */
+    margin: 4px 0; /* Adjusted margin */
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Hide sidebar */
+    height: 100%;
+    width: 250px;
+    background-color: black; /* Sidebar color set to black */
+    transition: left 0.3s;
+    padding-top: 60px;
+    z-index: 1000;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: white;
+    display: block;
+    text-align: center; /* Center align the sidebar links */
+    transition: background-color 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #c65d3a; /* Dark orange hover color for sidebar links */
+}
+
+.sidebar.active {
+    left: 0; /* Show sidebar */
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #2c2c2c; /* Darker background for dark mode */
+    color: #f4f4f4;
+}
+
+.navbar-brand {
+    background-color: darkred; /* Dark red background behind logo */
+    padding: 5px 10px; /* Padding around the logo */
+    border-radius: 5px; /* Rounded corners for the background */
+    display: flex;
+    align-items: center; /* Center align items vertically */
+}
+
+.navbar-brand img {
+    height: 40px; /* Adjust height of the logo */
+    margin-right: 10px; /* Space between logo and text */
+}
+
+.navbar-brand span {
+    color: black; /* Change website name to black */
+    font-size: 20px; /* Adjust font size as needed */
+    font-weight: bold; /* Set the website name to bold */
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    background-color: rgba(0, 0, 0, 0.9); /* Match background color */
+    border: none; /* Remove border */
+}
+
+.dropdown-item {
+    color: white; /* Dropdown item color */
+}
+
+.dropdown-item:hover {
+    background-color: #c65d3a; /* Dark orange hover color for dropdown items */
+}
+
+.dropdown-toggle::after {
+    display: none; /* Remove dropdown arrow */
+}
+
+.nav-item.dropdown:hover .nav-link {
+    color: #c65d3a; /* Change color on hover to match dropdown */
+}

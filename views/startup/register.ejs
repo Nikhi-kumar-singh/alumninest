@@ -1,0 +1,55 @@
+<% layout('layouts/boilerplate') %>
+<body>
+    <div class="container mt-5 mb-5">
+        <div class="idea-form">
+            <h2 class="text-center mb-4">Submit Idea</h2>
+            <form action="/startups/idea/submit" method="POST" >
+                <div class="form-group">
+                    <label for="idea-title" class="form-label">Idea Title:</label>
+                    <input type="text" class="form-control" id="idea-title" name="idea_title" placeholder="Enter idea title" required>
+                </div>
+    
+                <div class="form-group mt-4">
+                    <label for="idea-description" class="form-label">Description:</label>
+                    <textarea class="form-control" id="idea-description" name="description" rows="4" placeholder="Enter idea description" required></textarea>
+                </div>
+    
+                <div class="form-group mt-4">
+                    <label for="impact" class="form-label">Impact:</label>
+                    <textarea class="form-control" id="impact" name="impact" rows="3" placeholder="Describe the impact of your idea" required></textarea>
+                </div>
+    
+                <div class="form-group mt-4">
+                    <label for="target-audience" class="form-label">Target Audience:</label>
+                    <input type="text" class="form-control" id="target-audience" name="target_audience" placeholder="Enter target audience" required>
+                </div>
+    
+                <div class="form-group mt-4">
+                    <label for="idea-pdf" class="form-label">Idea PDF:</label>
+                    <label for="idea-pdf" class="file-label">Choose File</label>
+                    <input type="file" class="file-input" id="idea-pdf" name="idea_pdf" accept="application/pdf" required>
+                </div>
+
+                <div class="form-group mt-4">
+                    <label for="video-explanation" class="form-label">Video Explanation:</label>
+                    <label for="video-explanation" class="file-label">Attach Video</label>
+                    <input type="file" class="file-input" id="video-explanation" name="video_explanation" accept="video/*" required>
+                </div>
+    
+                <div class="form-group mt-4">
+                    <label for="expected-price" class="form-label">Expected Price:</label>
+                    <input type="number" class="form-control" id="expected-price" name="expected_price" placeholder="Enter expected price" required>
+                </div>
+
+                <div class="form-group mt-4">
+                    <label for="linkedin-url" class="form-label">LinkedIn Profile URL :</label>
+                    <input type="url" class="form-control" id="linkedin-url" name="linkedin_profile" placeholder="Enter LinkedIn profile URL" required>
+                </div>
+    
+                <div class="text-center">
+                    <button type="submit" class="btn btn-submit mt-4">Submit Idea</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>

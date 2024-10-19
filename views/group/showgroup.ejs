@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groups</title>
+    <link rel="stylesheet" href="/css/showgroup.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Groups</h1>
+
+        <% if (allGroup.length === 0) { %>
+            <p>No groups available. Please check back later!</p>
+        <% } else { %>
+            <% for(group of allGroup) { %>
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="group-name">Group Name: <%= group.groupName %></h2>
+                </div>
+                <div class="card-body">
+                    <p class="group-description">Description: <%= group.description %></p>
+                    <form action="/groups/join/<%= group._id %>" method="POST">
+                        <button type="submit" class="join-button">Join</button>
+                    </form>
+                </div>
+            </div>
+            <% } %>
+        <% } %>
+        
+        <div class="create-group">
+            <h2>Create a New Group</h2>
+            <form id="createGroupForm" action="/group/register" method="GET">
+                
+                <button type="submit">Create Group</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="/js/showgroup.js"></script>
+</body>
+</html>

@@ -1,9 +1,22 @@
 const mongoose = require('mongoose');
 
 const facultySchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  type: { 
+    type: String, 
+    default: 'Faculty'  // Store 'Alumni' as a default value
+  },
+    name: {
+        first_name: { type: String, required: true },
+        last_name: { type: String, required: true }
+      },
   email: { type: String, required: true, unique: true }, // Ensures no duplicate emails
+  username:{type:String, required:true, unique:true},
   phone: { type: String, required: true },
+  userId: {
+    type: String, 
+    required: true, 
+    unique: true,  // Ensure this field is unique
+  },
   department: { 
     type: String,
     enum: [
@@ -25,6 +38,9 @@ const facultySchema = new mongoose.Schema({
     enum: ['Professor', 'Associate Professor', 'Assistant Professor', 'Lecturer'], // Define possible designations
     required: true 
   },
+  qualifications: [{ type: String, required: true }], // Array of qualifications (Multiple degrees)
+  year_of_experience: { type: Number, required: true }, // Number of years of experience
+  institutions_taught: [{ type: String, required: true }], // Array of institutions where the faculty has taught
   bio: { type: String }, // Optional field for a short biography
   events: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Event' }], // Reference to Event model
   profile_picture: {

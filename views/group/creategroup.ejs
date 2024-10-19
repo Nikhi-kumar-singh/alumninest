@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/creategroup.css">
+</head>
+<body>
+
+        <div class="container">
+            <h1>Create Group</h1>
+            <form action="/group/create" method="POST">
+                <div class="form-group">
+                    <label for="groupName">Group Name:</label>
+                    <input type="text" id="groupName" name="groupName" placeholder="Enter Group Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="groupDescription">Group Description:</label>
+                    <textarea id="groupDescription" name="description" placeholder="Enter Group Description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="createdBy">Created By (User ID):</label>
+                    <input type="text" id="createdBy" name="createdById" placeholder="Enter Your ID" required>
+                </div>
+                <div class="form-group">
+                    <label for="createdByType">Created By Type:</label>
+                    <select id="createdByType" name="createdByType" required>
+                        <option value="Alumni">Alumni</option>
+                        <option value="Student">Student</option>
+                        <option value="Faculty">Faculty</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="profilePhoto">Profile Photo URL:</label>
+                    <input type="text" id="profilePhoto" name="profilePhoto" placeholder="Enter Profile Photo URL">
+                </div>
+                <button type="submit">Create Group</button>
+            </form>
+        </div>
+
+</body>
+</html>

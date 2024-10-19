@@ -2,12 +2,16 @@ const mongoose = require("mongoose");
 
 
 const studentSchema = new mongoose.Schema({
-   
+  type: { 
+    type: String, 
+    default: 'Student'  // Store 'Alumni' as a default value
+  },
     name: {
       first_name: { type: String, required: true },
       last_name: { type: String, required: true }
     },
     email: { type: String, required: true, unique: true },
+    username:{type:String, required:true, unique:true},
     password: { type: String, required: true },  // Store hashed password
     phone_number: { type: String, required: true },
     gender: { type: String, enum: ['Male', 'Female', 'Other'], required: true },
@@ -21,6 +25,11 @@ const studentSchema = new mongoose.Schema({
     // Fields specific to the Student schema
     enrollment_year: { type: Number },
     graduation_year: { type: Number },
+    userId: {
+      type: String, 
+      required: true, 
+      unique: true,  // Ensure this field is unique
+    },
     degree: { type: String , enum: [
       'B.Tech',
       'BBA',

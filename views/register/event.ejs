@@ -1,0 +1,119 @@
+<% layout('layouts/boilerplate') %>
+<body>
+
+    <div class="container mt-5 mb-5">
+        <div class="event-form">
+            <h2 class="text-center mb-4">Create Event</h2>
+            <form action="/events/create" method="POST" >
+                <div class="form-group mt-3">
+                    <label for="name" class="form-label">Event Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter event name" required>
+                </div>
+    
+                <div class="form-group mt-3">
+                    <label for="description" class="form-label">Event Description:</label>
+                    <textarea class="form-control" id="description" name="description" rows="4" placeholder="Enter event description" required></textarea>
+                </div>
+    
+                <div class="form-group mt-3">
+                    <label for="type" class="form-label">Event Type:</label>
+                    <select class="form-select" id="type" name="type" required>
+                        <option value="">Select event type</option>
+                        <option value="Workshop">Workshop</option>
+                        <option value="Seminar">Seminar</option>
+                        <option value="Conference">Conference</option>
+                        <option value="Webinar">Webinar</option>
+                        <option value="Meetup">Meetup</option>
+                    </select>
+                </div>
+    
+                <div class="form-row mt-3">
+                    <div class="form-group col-md-6">
+                        <label for="start" class="form-label">Start Date and Time:</label>
+                        <input type="datetime-local" class="form-control" id="start" name="start" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="end" class="form-label">End Date and Time:</label>
+                        <input type="datetime-local" class="form-control" id="end" name="end" required>
+                    </div>
+                </div>
+    
+                <div class="form-group mt-3">
+                    <label for="location" class="form-label">Location:</label>
+                    <input type="text" class="form-control" id="location" name="location" placeholder="Enter event location" required>
+                </div>
+    
+                <div class="form-group mt-3">
+                    <label for="organiser_type" class="form-label">Organiser Type:</label>
+                    <select class="form-select" id="organiser_type" name="organiser_type" required>
+                        <option value="Alumni">Alumni</option>
+                        <option value="Faculty">Faculty</option>
+                    </select>
+                </div>
+    
+                <div class="form-group mt-3">
+                    <label for="organiser_name" class="form-label">Organiser Name:</label>
+                    <input type="text" class="form-control" id="organiser_name" name="organiser_name" placeholder="Enter organiser name" required>
+                </div>
+    
+                <div class="form-group mt-3">
+                    <label for="capacity" class="form-label">Capacity:</label>
+                    <input type="number" class="form-control" id="capacity" name="capacity" placeholder="Enter event capacity" required>
+                </div>
+    
+                <div class="form-group mt-3">
+                    <label for="speakers" class="form-label">Speakers:</label>
+                    <div id="speakers-section">
+                        <div class="form-row mb-3">
+                            <div class="col">
+                                <input type="text" class="form-control" name="speakers[0][name]" placeholder="Speaker Name" required>
+                            </div>
+                            <div class="col speaker-bio">
+                                <textarea class="form-control" name="speakers[0][bio]" placeholder="Speaker Bio (Optional)"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary" onclick="addSpeaker()">Add More Speakers</button>
+                </div>
+    
+                <div class="form-group mt-3">
+                    <label for="price" class="form-label">Price (optional):</label>
+                    <input type="number" class="form-control" id="price" name="price" placeholder="Enter price" value="0">
+                </div>
+    
+                <div class="form-group mt-3">
+                    <label for="registration_deadline" class="form-label">Registration Deadline:</label>
+                    <input type="datetime-local" class="form-control" id="registration_deadline" name="registration_deadline" required>
+                </div>
+    
+                <div class="form-group mt-3">
+                    <label for="image" class="form-label">Event Image (optional):</label>
+                    <label for="image" class="file-label">Choose File</label>
+                    <input type="file" class="file-input" id="image" name="image" accept="image/*">
+                </div>
+    
+                <div class="text-center">
+                    <button type="submit" class="btn btn-create mt-4">Create Event</button>
+                </div>
+            </form>
+        </div>
+    </div>    
+
+    <script>
+        let speakerCount = 1;
+        function addSpeaker() {
+            const speakersSection = document.getElementById('speakers-section');
+            const speakerDiv = document.createElement('div');
+            speakerDiv.classList.add('form-row', 'mb-3');
+            speakerDiv.innerHTML = `
+                <div class="col">
+                    <input type="text" class="form-control" name="speakers[${speakerCount}][name]" placeholder="Speaker Name" required>
+                </div>
+                <div class="col speaker-bio">
+                    <textarea class="form-control" name="speakers[${speakerCount}][bio]" placeholder="Speaker Bio (Optional)"></textarea>
+                </div>`;
+            speakersSection.appendChild(speakerDiv);
+            speakerCount++;
+        }
+    </script>
+</body>

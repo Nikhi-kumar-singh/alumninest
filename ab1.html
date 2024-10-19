@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Profile Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: radial-gradient(circle at 10% 20%, rgb(98, 114, 128) 0%, rgb(52, 63, 51) 90.1%);
+            color: white;
+        }
+
+        .profile-container {
+            display: flex;
+            margin-top: 50px;
+            justify-content: center;
+        }
+
+        .profile-card {
+            background-color: gray;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            text-align: center;
+            font-size: 30px;
+            transition: transform 0.4s, box-shadow 0.4s;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .profile-picture {
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            margin-bottom: 30px;
+            transition: transform 0.3s;
+        }
+
+        .profile-picture:hover {
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        .edit-profile-btn {
+            margin-top: 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .edit-profile-btn:hover {
+            background-color: #fff;
+            color: #007bff;
+        }
+
+        .main-form {
+            background-color: gray;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+            padding: 30px;
+            width: 100%;
+            max-height: 800px;
+            max-width: 500px;
+            display: none; /* Hide the form by default */
+        }
+
+        .form-control {
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .form-control:focus {
+            background-color: lightgray;
+            border-color: #007bff;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+        }
+
+        .btn-primary {
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container profile-container">
+        <!-- Profile Card -->
+        <div class="profile-card" id="profileCard">
+            <img src="pexels-photo-2774556.webp" alt="Profile Picture" class="profile-picture">
+            <h4><strong style="font-size: 40px;" id="profileName">Aditya Singh</strong></h4>
+            <p id="profileInstitute">United Institute of Technology (UIT), Allahabad</p>
+            <p><span id="profileGraduationYear"></span></p>
+            <p><span id="profileDepartment"></span></p>
+            <p><span id="profileSkills"></span></p>
+            <p><span id="profileInterests"></span></p>
+            <p><span id="profileSocialLinks"></span></p>
+            <div>
+                <button class="btn btn-light btn-sm">
+                    <i class="fas fa-share-alt"></i>
+                </button>
+                <button class="btn btn-light btn-sm">
+                    <i class="fas fa-eye"></i>
+                </button>
+            </div>
+            <button class="btn btn-primary edit-profile-btn" id="editProfileButton">Edit Profile</button>
+        </div>
+
+        <!-- Main Form -->
+        <div class="main-form" id="mainForm">
+            <h4>Profile Information</h4>
+            <form>
+                <div class="form-group">
+                    <label for="graduationYear">Graduation Year</label>
+                    <input type="number" class="form-control" id="graduationYear" style="background-color: darkgray;" placeholder="Enter graduation year">
+                </div>
+                <div class="form-group">
+                    <label for="department">Department</label>
+                    <input type="text" class="form-control" id="department" style="background-color: darkgray;" placeholder="Enter department">
+                </div>
+                <div class="form-group">
+                    <label for="skills">Skills</label>
+                    <input type="text" class="form-control" id="skills" style="background-color: darkgray;" placeholder="Enter skills">
+                </div>
+                <div class="form-group">
+                    <label for="interests">Interests</label>
+                    <input type="text" class="form-control" id="interests" style="background-color: darkgray;" placeholder="Enter interests">
+                </div>
+                <div class="form-group">
+                    <label for="socialLinks">Social Links</label>
+                    <input type="url" class="form-control" id="socialLinks" style="background-color: darkgray;" placeholder="Enter social links">
+                </div>
+                <button type="button" class="btn btn-primary" id="saveProfileButton">Save Profile</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('editProfileButton').addEventListener('click', function() {
+            var mainForm = document.getElementById('mainForm');
+            if (mainForm.style.display === 'none' || mainForm.style.display === '') {
+                mainForm.style.display = 'block';
+            } else {
+                mainForm.style.display = 'none';
+            }
+        });
+
+        document.getElementById('saveProfileButton').addEventListener('click', function() {
+            // Get values from the form inputs
+            var graduationYear = document.getElementById('graduationYear').value;
+            var department = document.getElementById('department').value;
+            var skills = document.getElementById('skills').value;
+            var interests = document.getElementById('interests').value;
+            var socialLinks = document.getElementById('socialLinks').value;
+
+            // Update the profile card with the entered values
+            document.getElementById('profileGraduationYear').textContent = Graduation Year: ${graduationYear};
+            document.getElementById('profileDepartment').textContent = Department: ${department};
+            document.getElementById('profileSkills').textContent = Skills: ${skills};
+            document.getElementById('profileInterests').textContent = Interests: ${interests};
+            document.getElementById('profileSocialLinks').textContent = Social Links: ${socialLinks};
+
+            // Hide the form after saving the details
+            document.getElementById('mainForm').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

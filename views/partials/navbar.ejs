@@ -18,15 +18,22 @@
                 <li class="nav-item"><a class="nav-link" href="#connections">Connections</a></li>
                 <li class="nav-item"><a class="nav-link" href="#events">Events</a></li>
                 <li class="nav-item"><a class="nav-link" href="#articles">Articles</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="registerDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Register</a>
-                    <ul class="dropdown-menu" aria-labelledby="registerDropdown">
-                        <li><a class="dropdown-item" href="/alumninext/register/student">Student</a></li>
-                        <li><a class="dropdown-item" href="/alumninext/register/alumni">Alumni</a></li>
-                        <li><a class="dropdown-item" href="#faculty">Faculty</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#login">Login</a></li>
+                <% if(!currUser) { %>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="registerDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Register</a>
+                        <ul class="dropdown-menu" aria-labelledby="registerDropdown">
+                            <li><a class="dropdown-item" href="/alumninext/register/student">Student</a></li>
+                            <li><a class="dropdown-item" href="/alumninext/register/alumni">Alumni</a></li>
+                            <li><a class="dropdown-item" href="/alumninext/register/faculty">Faculty</a></li> <!-- Updated href -->
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/login">Login</a></li> <!-- Moved outside -->
+                <% } %>
+                <% if(currUser) { %>
+                    <li class="nav-item ms-auto"><a class="nav-link" href="/logout">Logout</a></li>  
+                <% } %>
+                
+
             </ul>
             <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>
         </div>
