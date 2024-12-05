@@ -96,10 +96,23 @@ const alumniSchema = new mongoose.Schema({
       github: { type: String },
       twitter: { type: String }
     },
+    group_joined: [{
+      group_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Group' },
+      group_name: { type: String }
+    }],
     skills: [String],
     projects: [String],  // List of projects
     contributions: [String],  // Contributions to college, etc.
     is_verified: { type: Boolean, default: false },
+
+    connections_students: [{
+      student_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Student' },
+      status: { type: String, enum: ['pending', 'connected', 'rejected'], default: 'pending' }
+    }],
+    connections_faculty: [{
+      faculty_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Faculty' },
+      status: { type: String, enum: ['pending', 'connected', 'rejected'], default: 'pending' }
+    }],
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now }
   });

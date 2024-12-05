@@ -1,0 +1,315 @@
+body{
+  background: radial-gradient(circle at 10% 20%, rgb(40, 50, 60) 0%, rgb(0, 0, 0) 90%);
+}
+
+
+.group-h {
+  text-align: center;
+  font-weight: bold;
+  color: #fff; /* Changed header text color to white */
+}
+
+.group-card {
+  background-color: #000000; /* Navy blue background for the cards */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 170px; /* Fixed height for equal sizing */
+  color: #fff; /* Changed text color to white */
+  border-radius: 10px; /* Rounded corners */
+}
+
+.group-card:hover {
+  transform: translateY(-5px);
+  animation: glowing-shadow 1.5s infinite alternate; /* Applying glowing shadow effect on hover */
+}
+
+@keyframes glowing-shadow {
+  0% {
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 1), 0 0 40px rgba(0, 255, 255, 0.5);
+  }
+}
+
+.join-btn, .open-btn {
+  background-color: #007bff;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.join-btn:hover, .open-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Circular image box styles */
+.circle-box {
+  width: 120px; /* Width of the circle */
+  height: 80px; /* Height of the circle */
+  border-radius: 50%; /* Make it circular */
+  overflow: hidden; /* Hide overflow for images */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto; /* Center horizontally */
+  border: 2px solid #007bff; /* Border color */
+  background-color: #fff; /* Background color */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+.circle-box img {
+  width: 100%; /* Make image fill the circle */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Floating button styles */
+.floating-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #283da7; /* Green background for the button */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.floating-btn:hover {
+  background-color: #3f32f9; /* Darker green on hover */
+}
+
+/* Vertical Divider */
+.vertical-divider {
+  border-left: 2px solid #007bff; /* Divider color */
+  height: 100%;
+  display: none; /* Hide on smaller screens */
+}
+
+@media (min-width: 768px) {
+  .vertical-divider {
+    display: block; /* Show on medium and larger screens */
+  }
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .group-card {
+    max-width: 100%;
+  }
+}
+
+/* abvp */
+/* Footer */
+.footer-info-links a{
+  text-decoration: none;
+  color: #020202;
+  
+}
+
+.footer-info-links a :hover{
+  text-decoration: underline;
+}
+
+
+.footer-info-links,
+.footer-info-socials, .footer-info-brand {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: aliceblue;
+
+}
+
+.footer-info-socials i{
+  font-size: 1.2rem;
+  margin-right: 1rem;
+
+}
+
+.footer-info{
+  text-align: center;
+  display: flex;
+  background-color: #060606;
+  height:8rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: space-evenly;
+  margin-top: auto;
+
+
+   
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0f0f0f;
+  padding: 10px 20px;
+  color: rgb(26, 13, 170);
+  position: fixed;
+  border-radius: 8px;
+  height:70px;
+  box-shadow: #38316a;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+}
+
+.menu-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  margin-right: 20px
+}
+
+.menu-toggle .bar {
+  width: 25px;
+  height: 3px;
+  background-color: rgb(57, 175, 234);;
+  margin: 4px 0;
+  transition: 0.3s ease;
+}
+
+.menu-toggle:hover .bar {
+  background-color: #320c9a;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  color: rgb(57, 175, 234);;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.website-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.navbar-center {
+  flex-grow: 1; /* Take remaining space to center */
+  display: flex;
+  justify-content: center;
+  box-shadow: #0a168a;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  margin:0;
+  justify-content: center;
+}
+
+.nav-links li {
+  margin-left: 10px;
+  margin-right: 30px ;
+  position: relative;
+}
+
+.nav-links a {
+  color: rgb(57, 175, 234);
+  text-decoration: none;
+  padding: 8px 16px;
+ 
+  transition: background 0.3s ease;
+}
+
+.nav-links a:hover {
+  background-color: #e8e8f1;
+  border-radius: 4px;
+}
+
+/* Dropdown Styling */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #333;
+  min-width: 200px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content li {
+  width: 100%;
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color:rgb(57, 175, 234);;
+  max-width: 190px;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  margin-right: 50px;
+}
+
+/* Toggle Side Menu */
+.side-menu {
+  background-color: #1c1b1b;
+  color: white;
+  position: fixed;
+  top: 60px;
+  left: -200px;
+  width: 200px;
+  height: 100%;
+  transition: 0.3s;
+  z-index: 99;
+}
+
+.side-menu.active {
+  left: 0;
+}
+
+.side-menu ul {
+  list-style: none;
+  padding: 20px;
+}
+
+.side-menu ul li {
+  margin-bottom: 20px;
+}
+
+.side-menu ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  display: block;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+.side-menu ul li a:hover {
+  background-color: rgb(57, 175, 234);;
+  border-radius: 4px;
+}

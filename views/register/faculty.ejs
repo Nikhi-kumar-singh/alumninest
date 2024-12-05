@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            background: radial-gradient(circle at 10% 20%, rgb(98, 114, 128) 0%, rgb(52, 63, 51) 90.1%);
+        }
+        .profile-form {
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 2rem;
+        }
+        .form-label {
+            color: white;
+        }
+        .form-control, .form-select {
+            background-color: rgba(50, 50, 50, 0.7);
+            color: white;
+            border: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
+        .form-control:hover, .form-select:hover {
+            border-color: #20B2AA;
+        }
+        .form-control::placeholder {
+            color: grey;
+        }
+        h2 {
+            color: #20B2AA;
+        }
+        .btn-submit {
+            background-color: #20B2AA;
+            color: black;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .btn-submit:hover {
+            background-color: #1c9c8c;
+            transform: translateY(-2px);
+        }
+        .file-input {
+            display: none;
+        }
+        .file-label {
+            display: inline-block;
+            background-color: #808080;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5 mb-5">
+        <div class="profile-form">
+            <h2 class="text-center mb-4">Faculty Registration Form</h2>
+            <form action="/profile/submit" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="first-name" class="form-label">First Name:</label>
+                    <input type="text" class="form-control" id="first-name" name="first_name" placeholder="Enter first name" required>
+                </div>
+
+                <div class="form-group mt-4">
+                    <label for="last-name" class="form-label">Last Name:</label>
+                    <input type="text" class="form-control" id="last-name" name="last_name" placeholder="Enter last name" required>
+                </div>
+
+                <div class="form-group mt-4">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
+                </div>
+
+                <div class="form-group mt-4">
+                    <label for="phone" class="form-label">Phone:</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter phone number" required>
+                </div>
+
+                <div class="form-group mt-4">
+                    <label for="user-id" class="form-label">User ID:</label>
+                    <input type="text" class="form-control" id="user-id" name="user_id" placeholder="Enter user ID" required>
+                </div>
+
+                <div class="form-group mt-4">
+                    <label for="department" class="form-label">Department:</label>
+                    <select class="form-select" id="department" name="department" required>
+                        <option value="" disabled selected>Select department</option>
+                        <option>Computer Science</option>
+                        <option>Information Technology</option>
+                        <option>Electronics and Communication</option>
+                        <option>Electrical Engineering</option>
+                        <option>Mechanical Engineering</option>
+                        <option>Civil Engineering</option>
+                        <option>Chemical Engineering</option>
+                        <option>Pharmacy</option>
+                        <option>Management</option>
+                        <option>Business Administration</option>
+                    </select>
+                </div>
+
+                <div class="form-group mt-4">
+                    <label for="designation" class="form-label">Designation:</label>
+                    <select class="form-select" id="designation" name="designation" required>
+                        <option value="" disabled selected>Select designation</option>
+                        <option>Professor</option>
+                        <option>Associate Professor</option>
+                        <option>Assistant Professor</option>
+                        <option>Lecturer</option>
+                    </select>
+                </div>
+
+                <div class="form-group mt-4" id="qualifications-section">
+                    <label for="qualifications" class="form-label">Qualifications:</label>
+                    <div class="d-flex mb-2">
+                        <input type="text" class="form-control" name="qualifications[]" placeholder="Enter qualification" required>
+                        <button type="button" class="btn btn-sm btn-secondary ms-2" onclick="addQualification()">Add More</button>
+                    </div>
+                </div>
+
+                <div class="form-group mt-4">
+                    <label for="experience" class="form-label">Years of Experience:</label>
+                    <input type="number" class="form-control" id="experience" name="experience" placeholder="Enter years of experience" required>
+                </div>
+
+                <div class="form-group mt-4">
+                    <label for="institution" class="form-label">Institutions Taught:</label>
+                    <input type="text" class="form-control" id="institution" name="institution" placeholder="Enter institutions taught" required>
+                </div>
+
+                <div class="form-group mt-4">
+                    <label for="bio" class="form-label">Bio:</label>
+                    <textarea class="form-control" id="bio" name="bio" rows="4" placeholder="Enter a short bio" required></textarea>
+                </div>
+
+                <div class="form-group mt-4">
+                    <label for="events" class="form-label">Events:</label>
+                    <textarea class="form-control" id="events" name="events" rows="3" placeholder="Enter events associated with"></textarea>
+                </div>
+
+                <div class="form-group mt-4">
+                    <label for="profile-picture" class="form-label">Profile Picture:</label>
+                    <label for="profile-picture" class="file-label">Upload Picture</label>
+                    <input type="file" class="file-input" id="profile-picture" name="profile_picture" accept="image/*">
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-submit mt-4">Submit Form</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function addQualification() {
+            const qualificationsSection = document.getElementById('qualifications-section');
+            const newQualification = document.createElement('div');
+            newQualification.classList.add('d-flex', 'mb-2');
+            newQualification.innerHTML = `
+                <input type="text" class="form-control" name="qualifications[]" placeholder="Enter qualification" required>
+                <button type="button" class="btn btn-sm btn-danger ms-2" onclick="removeQualification(this)">Remove</button>
+            `;
+            qualificationsSection.appendChild(newQualification);
+        }
+
+        function removeQualification(button) {
+            button.parentElement.remove();
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

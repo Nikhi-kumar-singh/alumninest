@@ -2,42 +2,83 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/creategroup.css">
+    <title>Create Group</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            background: radial-gradient(circle at 10% 20%, rgb(98, 114, 128) 0%, rgb(52, 63, 51) 90.1%);
+        }
+        .group-form {
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 2rem;
+        }
+        .form-label {
+            color: white;
+        }
+        .form-control, .form-select {
+            background-color: rgba(50, 50, 50, 0.7);
+            color: white;
+            border: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
+        .form-control:hover, .form-select:hover {
+            border-color: #20B2AA;
+        }
+        .form-control::placeholder, .form-select::placeholder {
+            color: grey;
+        }
+        h2 {
+            color: #20B2AA;
+        }
+        .btn-submit {
+            background-color: #20B2AA;
+            color: black;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .btn-submit:hover {
+            background-color: #1c9c8c;
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 <body>
 
-        <div class="container">
-            <h1>Create Group</h1>
-            <form action="/group/create" method="POST">
+    <div class="container mt-5 mb-5">
+        <div class="group-form">
+            <h2 class="text-center mb-4">Create Group</h2>
+            <form action="/groups/create" method="POST">
                 <div class="form-group">
-                    <label for="groupName">Group Name:</label>
-                    <input type="text" id="groupName" name="groupName" placeholder="Enter Group Name" required>
+                    <label for="group-name" class="form-label">Group Name:</label>
+                    <input type="text" class="form-control" id="group-name" name="groupName" placeholder="Enter group name" required>
                 </div>
-                <div class="form-group">
-                    <label for="groupDescription">Group Description:</label>
-                    <textarea id="groupDescription" name="description" placeholder="Enter Group Description" required></textarea>
+
+                <div class="form-group mt-4">
+                    <label for="description" class="form-label">Description:</label>
+                    <textarea class="form-control" id="description" name="description" rows="4" placeholder="Enter description" required></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="createdBy">Created By (User ID):</label>
-                    <input type="text" id="createdBy" name="createdById" placeholder="Enter Your ID" required>
+
+               
+
+                <div class="form-group mt-4">
+                    <label for="profile-photo" class="form-label">Profile Photo:</label>
+                    <input type="text" class="form-control" id="profile-photo" name="profilePhoto"  required>
                 </div>
-                <div class="form-group">
-                    <label for="createdByType">Created By Type:</label>
-                    <select id="createdByType" name="createdByType" required>
-                        <option value="Alumni">Alumni</option>
-                        <option value="Student">Student</option>
-                        <option value="Faculty">Faculty</option>
-                    </select>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-submit mt-4">Create Group</button>
                 </div>
-                <div class="form-group">
-                    <label for="profilePhoto">Profile Photo URL:</label>
-                    <input type="text" id="profilePhoto" name="profilePhoto" placeholder="Enter Profile Photo URL">
-                </div>
-                <button type="submit">Create Group</button>
             </form>
         </div>
+    </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -1,0 +1,97 @@
+<% layout('layouts/boilerplate') %>
+
+<body>
+
+  <div class="container mt-5">
+    <h1>Your Connections</h1>
+    <div class="row">
+        <% if (connected && connected.length > 0) { %>
+            <% connected.forEach(function(connection) { %>
+                <div class="col-md-4 mb-3">
+                    <div class="card connection-card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= connection.first_name %> <%= connection.last_name %>
+                            </h5>
+                            <p class="card-text">Role: <%= connection.job_title %></p>
+                            <p class="card-text">company: <%= connection.company %></p>
+                            <p class="card-text">Email: <%= connection.email %></p>
+                            <form action="/connections/chat" method="GET">
+                                <input type="hidden" name="name" value="<%= connection.first_name %>_<%= connection.last_name %>">
+                                <button type="submit" class="btn btn-primary open-btn">Message</button>
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <div class="alert alert-warning" role="alert">
+                No connections found.
+            </div>
+        <% } %>
+    </div>
+
+    <h2>Connect with Students</h2>
+    <div class="row">
+        <% allStudents.forEach(function(stud) { %>
+            <div class="col-md-4 mb-3">
+                <div class="card connection-card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%= stud.name.first_name %> <%= stud.name.last_name %>
+                        </h5>
+                        <p class="card-text">Email: <%= stud.email %></p>
+                        <form action="/connections/<%= stud._id %>?type=Student" method="post">
+                            <button class="btn btn-primary action-btn">Connect</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+
+    <h2>Connect with Alumni</h2>
+    <div class="row">
+        <% allAlumni.forEach(function(alum) { %>
+            <div class="col-md-4 mb-3">
+                <div class="card connection-card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%= alum.name.first_name %> <%= alum.name.last_name %>
+                        </h5>
+                        <p class="card-text">Email: <%= alum.email %></p>
+                        <form action="/connections/<%= alum._id %>?type=Alumni" method="post">
+                            <button class="btn btn-primary action-btn">Connect</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+
+    <h2>Connect with Faculty</h2>
+    <div class="row">
+        <% allFaculty.forEach(function(fac) { %>
+            <div class="col-md-4 mb-3">
+                <div class="card connection-card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%= fac.name.first_name %> <%= fac.name.last_name %>
+                        </h5>
+                        <p class="card-text">Email: <%= fac.email %></p>
+                        <form action="/connections/<%= fac._id %>?type=Faculty" method="post">
+                            <button class="btn btn-primary action-btn">Connect</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+  </div>
+
+  <button class="floating-btn" id="create-group-btn">+</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

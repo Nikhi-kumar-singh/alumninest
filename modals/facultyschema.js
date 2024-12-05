@@ -12,11 +12,11 @@ const facultySchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true }, // Ensures no duplicate emails
   username:{type:String, required:true, unique:true},
   phone: { type: String, required: true },
-  userId: {
-    type: String, 
-    required: true, 
-    unique: true,  // Ensure this field is unique
-  },
+
+  group_joined: [{
+    group_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Grpup' },
+    group_name: { type: String }
+  }],
   department: { 
     type: String,
     enum: [
@@ -51,6 +51,14 @@ const facultySchema = new mongoose.Schema({
     linkedin: { type: String },
     twitter: { type: String },
   },
+  connections_students: [{
+    student_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Student' },
+    status: { type: String, enum: ['pending', 'connected', 'rejected'], default: 'pending' }
+  }],
+  connections_alumni: [{
+    alumni_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Alumni' },
+    status: { type: String, enum: ['pending', 'connected', 'rejected'], default: 'pending' }
+  }],
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now }
 });

@@ -1,73 +1,53 @@
 
-<body class="dark-mode n-body">
-
-<nav class="navbar navbar-expand-lg p-3">
-    <div class="container-fluid">
-        <button class="toggle-button" id="toggle-sidebar" aria-label="Toggle sidebar">
-            <div class="toggle-line"></div>
-            <div class="toggle-line"></div>
-            <div class="toggle-line"></div>
-        </button>
-        <a class="navbar-brand" href="#">
-            <img src="https://media.tenor.com/Ud8Px21wDcYAAAAi/thisisfinland-finland.gif" alt="Logo">
-            <span>AlumniNest</span>
-        </a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#connections">Connections</a></li>
-                <li class="nav-item"><a class="nav-link" href="#events">Events</a></li>
-                <li class="nav-item"><a class="nav-link" href="#articles">Articles</a></li>
-                <% if(!currUser) { %>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="registerDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Register</a>
-                        <ul class="dropdown-menu" aria-labelledby="registerDropdown">
-                            <li><a class="dropdown-item" href="/alumninext/register/student">Student</a></li>
-                            <li><a class="dropdown-item" href="/alumninext/register/alumni">Alumni</a></li>
-                            <li><a class="dropdown-item" href="/alumninext/register/faculty">Faculty</a></li> <!-- Updated href -->
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="/login">Login</a></li> <!-- Moved outside -->
-                <% } %>
-                <% if(currUser) { %>
-                    <li class="nav-item ms-auto"><a class="nav-link" href="/logout">Logout</a></li>  
-                <% } %>
-                
-
-            </ul>
-            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>
+<body>
+<nav class="navbar">
+    <div class="left-section">
+        <div class="menu-toggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <div class="navbar-brand">
+            <img src="Screenshot (85).png" alt="Website Icon" class="icon">
+            <span class="website-name">AlumniNest</span>
         </div>
     </div>
+    <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/connections">Connections</a></li>
+        <li><a href="/events">Event</a></li>
+        <li><a href="/groups">Groups</a></li>
+        <li class="dropdown">
+            <% if(!currUser) { %>
+            <a href="#">Register</a>
+            <ul class="dropdown-content">
+                <li><a href="/alumninext/register/student">Student</a></li>
+                <li><a href="/alumninext/register/alumni">Alumni</a></li>
+                <li><a href="/faculty/register">Faculty</a></li>
+
+            </ul>
+        </li>
+        <li><a href="/login">Login</a></li>
+        <% } %>
+      <% if(currUser) { %>
+        <li><a href="/logout">Logout</a></li>
+        <% } %>
+        
+    </ul>
 </nav>
 
-<aside class="sidebar" id="sidebar" aria-label="Sidebar">
-    <a href="#profile">My Profile</a>
-    <a href="#mentors">My Mentors</a>
-    <a href="#about-college">About College</a>
-    <a href="#feedback">Feedback</a>
-</aside>
-<!-- <script src="/js/navbar.js"></script> -->
 
-<!-- <script>document.addEventListener('DOMContentLoaded', () => {
-    const sidebarToggle = document.getElementById('toggle-sidebar');
-    const sidebar = document.getElementById('sidebar');
-    const themeToggle = document.getElementById('theme-toggle');
+<!-- Toggle Menu Content -->
+<div class="side-menu">
+    <ul>
+        <li><a href="#">My Profile</a></li>
+        <li><a href="/connections">My Connections</a></li>
+        <li><a href="/feedback">Feedback</a></li>
+        <li><a href="/startups">Startups</a></li>
+        <li><a href="/jobportal">Jobs</a></li>
+        <li><a href="/events">Events</a></li>
+        <li><a href="/groups">Groups</a></li>
 
-    sidebarToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('active');
-    });
-
-    // Close the sidebar if clicked outside
-    document.addEventListener('click', (event) => {
-        if (!sidebar.contains(event.target) && !sidebarToggle.contains(event.target)) {
-            sidebar.classList.remove('active');
-        }
-    });
-
-    themeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀' : '🌙';
-    });
-});
-</script> -->
+    </ul>
+</div>
 </body>

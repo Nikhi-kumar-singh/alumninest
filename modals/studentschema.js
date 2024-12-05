@@ -25,11 +25,7 @@ const studentSchema = new mongoose.Schema({
     // Fields specific to the Student schema
     enrollment_year: { type: Number },
     graduation_year: { type: Number },
-    userId: {
-      type: String, 
-      required: true, 
-      unique: true,  // Ensure this field is unique
-    },
+
     degree: { type: String , enum: [
       'B.Tech',
       'BBA',
@@ -46,6 +42,10 @@ const studentSchema = new mongoose.Schema({
       event_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Event' },
       event_name: { type: String }
     }],
+    group_joined: [{
+      group_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Grpup' },
+      group_name: { type: String }
+    }],
     profile_picture: { type: String,
       default:"https://images.pexels.com/photos/27041405/pexels-photo-27041405/free-photo-of-a-view-of-the-ocean-from-a-pier.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
      },  // URL for profile picture
@@ -53,6 +53,15 @@ const studentSchema = new mongoose.Schema({
       linkedin: { type: String },
       github: { type: String }
     },
+      
+    connections_alumni: [{
+      alumni_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Alumni' },
+      status: { type: String, enum: ['pending', 'connected', 'rejected'], default: 'pending' }
+    }],
+    connections_faculty: [{
+      faculty_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Faculty' },
+      status: { type: String, enum: ['pending', 'connected', 'rejected'], default: 'pending' }
+    }],
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now }
   });

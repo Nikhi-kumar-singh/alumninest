@@ -1,0 +1,35 @@
+<% layout('layouts/boilerplate') %>
+<body>
+    <div class="job-div">
+
+   
+    <div class="heading">
+        <h3 style="color: #3009a4;"><strong>Job and Internship</strong></h3>
+        <p style="color: #161617;">"Open Doors to New Horizons: Explore Job Opportunities!"</p>
+    </div> <!-- New Heading -->
+    <div class="content">
+        <% allJob.forEach(function(job) { %>
+            
+
+        <div class="card">
+            <div class="box">
+                <div class="content">
+                    <h2><%=n%></h2>
+                    <h3><%= job.job_title %></h3>
+                    <p><strong>Company:</strong> <%= job.company_name %></p>
+                    <p class="card-text"><strong>Description:</strong> <%= job.description %></p>
+                    <p class="card-text"><strong>Last Date to apply:</strong> <%= job.last_registration_date.toLocaleDateString() %></p>
+                    
+                    <a href="<%= job.job_link %>">Apply</a>
+                    <% n = n+1;%>
+                </div>
+            </div>
+        </div>
+        <% }); %>
+        
+
+        
+    </div> <!-- Content Section -->
+    
+</div>
+</body>

@@ -1,0 +1,162 @@
+<% layout('layouts/boilerplate') %>
+
+<body>
+    <header>
+        <h1>Explore Adventure Activities </h1>
+    </header>
+
+    <main id="card-area">
+         
+
+        <div class="wrapper">
+            <div class="box-area"> 
+                <div class="box">
+                    <img src="https://images.pexels.com/photos/19012046/pexels-photo-19012046/free-photo-of-e-sports-teams-competing-in-a-tournament.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Team collaborating at a hackathon">
+                    <div class="overlay">
+                        <h3>Hackathon</h3>
+                        <p>Join innovative minds to create amazing projects in a collaborative environment.</p>
+                        <a href="/events/all?category=Hackathon">See more</a>
+                    </div>
+                </div>
+                
+                <div class="box">
+                    <img src="https://images.pexels.com/photos/7988749/pexels-photo-7988749.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                    <div class="overlay">
+                        <h3>Workshop</h3>
+                        <p>Participate in hands-on learning and skill-building workshops.</p>
+                        <a href="/events/all?category=Workshop">See more</a>
+                    </div>
+                </div>
+                
+                <div class="box">
+                    <img src="https://images.pexels.com/photos/8345977/pexels-photo-8345977.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="A speaker at a seminar">
+                    <div class="overlay">
+                        <h3>Seminar</h3>
+                        <p>Engage in knowledge-sharing sessions with industry experts.</p>
+                        <a href="/events/all?category=Seminar">See more</a>
+                    </div>
+                </div>
+                
+                <div class="box">
+                    <img src="https://images.pexels.com/photos/8424584/pexels-photo-8424584.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                    <div class="overlay">
+                        <h3>Conference</h3>
+                        <p>Attend large-scale events that bring experts and learners together.</p>
+                        <a href="/events/all?category=Conference">See more</a>
+                    </div>
+                </div>
+                
+                <div class="box">
+                    <img src="https://images.pexels.com/photos/4175452/pexels-photo-4175452.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                    <div class="overlay">
+                        <h3>Webinar</h3>
+                        <p>Join online sessions and learn from the comfort of your home.</p>
+                        <a href="/events/all?category=Webinar">See more</a>
+                    </div>
+                </div>
+                
+                <div class="box">
+                    <img src="https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="People networking at a meetup">
+                    <div class="overlay">
+                        <h3>Meetup</h3>
+                        <p>Connect with peers and professionals in an informal setting.</p>
+                        <a href="/events/all?category=Meetup">See more</a>
+                    </div>
+                </div>
+                
+                <div class="box">
+                    <img src="https://images.pexels.com/photos/1540406/pexels-photo-1540406.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                    <div class="overlay">
+                        <h3>Cultural Events</h3>
+                        <p>Celebrate diversity with music, dance, and traditions.</p>
+                        <a href="/events/all?category=Cultural%20Events">See more</a>
+                    </div>
+                </div>
+                
+                <div class="box">
+                    <img src="https://media.istockphoto.com/id/1484758991/photo/hackathon-concept-the-meeting-at-the-white-office-table.jpg?s=1024x1024&w=is&k=20&c=l62tt_4blBi7q1DZKcA-F97WBhFp-ya2RUw65ylsaWw=" alt="TedTalk presentation">
+                    <div class="overlay">
+                        <h3>TedTalk</h3>
+                        <p>Listen to inspiring talks from experts in various fields.</p>
+                        <a href="/events/all?category=TedTalk">See more</a>
+                    </div>
+                </div>
+                
+                <div class="box">
+                    <img src="https://images.pexels.com/photos/7413909/pexels-photo-7413909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                    <div class="overlay">
+                        <h3>Startup Showcase</h3>
+                        <p>Explore the latest innovations from budding entrepreneurs.</p>
+                        <a href="/events/all?category=Startup%20Showcase">See more</a>
+                    </div>
+                </div>
+                
+                <div class="box">
+                    <img src="https://images.pexels.com/photos/8133993/pexels-photo-8133993.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                    <div class="overlay">
+                        <h3>Panel Discussion and Talk</h3>
+                        <p>Join discussions with thought leaders on current topics.</p>
+                        <a href="/events/all?category=Panel%20Discussion%20and%20Talk">See more</a>
+                    </div>
+                </div>
+                
+                <div class="box">
+                    <img src="https://images.pexels.com/photos/3182755/pexels-photo-3182755.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                    <div class="overlay">
+                        <h3>Orientation</h3>
+                        <p>Get acquainted with new programs and opportunities.</p>
+                        <a href="/events/all?category=Orientation">See more</a>
+                    </div>
+                </div>
+                
+            </div>            
+        </div>       
+    </main>
+
+    <script>
+        const images = document.querySelectorAll('.image-container');
+        const leftTexts = document.querySelectorAll('.left-text');
+        const rightTexts = document.querySelectorAll('.right-text');
+        let currentIndex = 0;
+
+        function showNextImage() {
+            images[currentIndex].classList.remove('active');
+            leftTexts[currentIndex].classList.remove('active');
+            rightTexts[currentIndex].classList.remove('active');
+
+            currentIndex = (currentIndex + 1) % images.length;
+
+            images[currentIndex].classList.add('active');
+            leftTexts[currentIndex].classList.add('active');
+            rightTexts[currentIndex].classList.add('active');
+        }
+
+        setInterval(showNextImage, 3000); // Change image every 3 seconds
+
+        const boxes = document.querySelectorAll('.box');
+
+        function fadeInCards() {
+            boxes.forEach((box, index) => {
+                setTimeout(() => {
+                    box.classList.add('visible');
+                }, index * 300); // Stagger the fade-in
+            });
+        }
+
+        function rotateCards() {
+            boxes.forEach((box) => {
+                box.classList.add('rotate');
+                setTimeout(() => {
+                    box.classList.remove('rotate');
+                }, 600); // Duration of the rotation animation
+            });
+        }
+
+        // Initial fade-in on page load
+        setTimeout(() => {
+            fadeInCards();
+            setInterval(rotateCards, 10000); // Rotate cards every 10 seconds
+        }, 1000); // Delay fade-in by 1 second
+    </script>
+    
+</body>

@@ -1,11 +1,9 @@
-
-
 <body>
     <div class="container mt-5">
         <h2 class="text-center mb-4">Events</h2>
         
         <% Object.keys(groupedEvents).forEach(category => { %>
-            <h3 class="mt-4"><%= category %></h3>
+            <h3 id="<%= category.replace(/\s+/g, '') %>" class="mt-4"><%= category %></h3> <!-- Add id -->
             <div class="row mb-4">
                 <% groupedEvents[category].forEach(event => { %>
                     <div class="col-md-4 mb-4">
@@ -25,4 +23,17 @@
         <% }) %>
         
     </div>
+
+    <script>
+        // Get the selected category from server-side rendering
+        const selectedCategory = "<%= selectedCategory.replace(/\s+/g, '') %>";
+        
+        if (selectedCategory) {
+            // Scroll to the selected category
+            const categoryElement = document.getElementById(selectedCategory);
+            if (categoryElement) {
+                categoryElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
 </body>

@@ -1,0 +1,286 @@
+<% layout('layouts/boilerplate') %>
+
+<body class="chat-body">
+    <div class="container-fluid chat-container ">
+        <div class="card chat-window chat-img chat-room">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Group Profile" class="group-profile-pic">
+                    <h5 class="ml-3"><%= groupName %></h5>
+                </div>
+                
+            </div>
+            <div class="card-body chat-body">
+                <div class="message-group"></div>
+            </div>
+            <div class="card-footer d-flex align-items-center">
+                <div class="input-group">
+                    <span class="input-group-text" onclick="toggleMediaOptions()">📎</span>
+                    <input type="text" class="form-control" id="messageInput" placeholder="Type a message...">
+                    <span class="input-group-text" onclick="toggleEmojiPicker(event)">😊</span>
+                    <button class="btn btn-primary" onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mediaOptions" class="media-options">
+            <button class="btn btn-light" onclick="openFileDialog('photo')">Photo or Video</button>
+            <button class="btn btn-light" onclick="openFileDialog('file')">File</button>
+            <button class="btn btn-light" onclick="createPoll()">Poll</button>
+        </div>
+
+        <div id="pollCard" class="poll-card">
+            <input type="text" id="pollQuestion" class="form-control" placeholder="Enter your poll question">
+            <input type="text" class="form-control poll-option" placeholder="Option 1">
+            <input type="text" class="form-control poll-option" placeholder="Option 2">
+            <input type="text" class="form-control poll-option" placeholder="Option 3">
+            <button class="btn btn-primary" onclick="sendPoll()">Create Poll</button>
+        </div>
+
+        <div id="emojiPicker" class="emoji-picker">
+            <div class="emoji-grid">
+                <span class="emoji" onclick="addEmoji('😀')">😀</span>
+                <span class="emoji" onclick="addEmoji('😁')">😁</span>
+                <span class="emoji" onclick="addEmoji('😂')">😂</span>
+                <span class="emoji" onclick="addEmoji('🤣')">🤣</span>
+                <span class="emoji" onclick="addEmoji('😃')">😃</span>
+                <span class="emoji" onclick="addEmoji('😅')">😅</span>
+                <span class="emoji" onclick="addEmoji('😇')">😇</span>
+                <span class="emoji" onclick="addEmoji('😉')">😉</span>
+                <span class="emoji" onclick="addEmoji('😍')">😍</span>
+                <span class="emoji" onclick="addEmoji('😎')">😎</span>
+            </div>
+        </div>
+
+        <input type="file" id="fileInput" style="display: none;" onchange="handleFileUpload(event)">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const userProfile = {
+              name: 'loggedUserName',
+              profilePicture: ''
+};
+
+// Initialize Socket.IO connection
+const socket = io();
+
+// Track users who have voted
+const userVotes = new Set();
+
+function toggleMediaOptions() {
+    const mediaOptions = document.getElementById('mediaOptions');
+    mediaOptions.style.display = mediaOptions.style.display === 'block' ? 'none' : 'block';
+    hidePollCard();
+    hideEmojiPicker();
+}
+
+function openFileDialog(type) {
+    const fileInput = document.getElementById('fileInput');
+    fileInput.setAttribute('accept', type === 'photo' ? 'image/*,video/*' : '*/*');
+    fileInput.click();
+    hideMediaOptions();
+}
+function handleFileUpload(event) {
+    const file = event.target.files[0];
+
+    if (file) {
+        const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const fileURL = URL.createObjectURL(file);  // Create a local URL for the file
+
+        const fileData = {
+            name: userProfile.name,
+            type: file.type,
+            url: fileURL,
+            fileName: file.name,  // Adding the file name for display purposes
+            time: currentTime
+        };
+
+        // Emit file upload event to server
+        socket.emit('uploadFile', fileData);
+
+        // Clear the file input after upload
+        event.target.value = '';
+    }
+}
+
+// Listen for file upload from the server
+socket.on('receiveFile', (fileData) => {
+    const messageGroup = document.querySelector('.message-group');
+
+    const newMessage = document.createElement('div');
+    newMessage.classList.add('message');
+    
+    let fileMarkup = '';
+
+    if (fileData.type.startsWith('image/')) {
+        fileMarkup = `<img src="${fileData.url}" alt="${fileData.fileName}" class="uploaded-image"/>`;
+    } else if (fileData.type.startsWith('video/')) {
+        fileMarkup = `
+            <video controls class="uploaded-video">
+                <source src="${fileData.url}" type="${fileData.type}">
+                Your browser does not support the video tag.
+            </video>`;
+    } else {
+        fileMarkup = `<a href="${fileData.url}" download="${fileData.fileName}" class="uploaded-file">Download ${fileData.fileName}</a>`;
+    }
+
+    newMessage.innerHTML = `
+        <div class="d-flex align-items-start">
+            <div class="group-profile-pic">${fileData.name.charAt(0)}</div>
+            <div class="ml-2">
+                <div class="sender-info">${fileData.name}</div>
+                <div class="message-content">
+                    ${fileMarkup}
+                    <span class="timestamp">${fileData.time}</span>
+                </div>
+            </div>
+        </div>
+    `;
+
+    messageGroup.appendChild(newMessage);
+});
+
+
+function sendMessage() {
+    const messageInput = document.getElementById('messageInput');
+    const messageText = messageInput.value.trim();
+
+    if (messageText) {
+        const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const messageData = {
+            name: userProfile.name,
+            text: messageText,
+            time: currentTime
+        };
+
+        // Emit message event to server
+        socket.emit('sendMessage', messageData);
+
+        // Clear the input after sending the message
+        messageInput.value = '';
+    }
+}
+
+// Listen for incoming messages from server
+socket.on('receiveMessage', (messageData) => {
+    const messageGroup = document.querySelector('.message-group');
+    const newMessage = document.createElement('div');
+
+    newMessage.innerHTML = `
+        <div class="d-flex align-items-start">
+            <div class="group-profile-pic" style="background-color: ${getRandomColor()};">${messageData.name.charAt(0)}</div>
+            <div class="ml-2">
+                <div class="sender-info">${messageData.name}</div>
+                <div class="message-content">
+                    ${messageData.text}
+                    <span class="timestamp">${messageData.time}</span>
+                </div>
+            </div>
+        </div>
+    `;
+    messageGroup.appendChild(newMessage);
+});
+
+function toggleEmojiPicker(event) {
+    const emojiPicker = document.getElementById('emojiPicker');
+    emojiPicker.style.display = emojiPicker.style.display === 'block' ? 'none' : 'block';
+    hideMediaOptions(); // Ensure media options are hidden when emoji picker is shown
+    hidePollCard();
+}
+
+function addEmoji(emoji) {
+    const messageInput = document.getElementById('messageInput');
+    messageInput.value += emoji;
+}
+
+function createPoll() {
+    const pollCard = document.getElementById('pollCard');
+    pollCard.style.display = pollCard.style.display === 'block' ? 'none' : 'block';
+    hideMediaOptions();
+}
+
+function sendPoll() {
+    const pollQuestion = document.getElementById('pollQuestion').value.trim();
+    const pollOptions = Array.from(document.querySelectorAll('.poll-option')).map(option => option.value.trim()).filter(option => option !== '');
+
+    if (pollQuestion && pollOptions.length > 0) {
+        const pollData = {
+            question: pollQuestion,
+            options: pollOptions,
+            creator: userProfile.name
+        };
+
+        // Emit poll creation event to server
+        socket.emit('createPoll', pollData);
+
+        // Clear input fields
+        document.getElementById('pollQuestion').value = '';
+        document.querySelectorAll('.poll-option').forEach(option => option.value = '');
+        document.getElementById('pollCard').style.display = 'none';
+    }
+}
+
+// Listen for incoming polls from server
+socket.on('receivePoll', (pollData) => {
+    const pollMarkup = `
+        <div class="message poll">
+            <div class="d-flex align-items-start">
+                <div class="group-profile-pic" style="background-color: ${getRandomColor()};">${pollData.creator.charAt(0)}</div>
+                <div class="ml-2">
+                    <div class="sender-info">${pollData.creator}</div>
+                    <div class="message-content">
+                        <strong>${pollData.question}</strong>
+                        ${pollData.options.map((option, index) => `
+                            <div>
+                                <input type="radio" name="poll-${pollData.question}" id="option-${index}">
+                                <label for="option-${index}">${option}</label>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    document.querySelector('.message-group').innerHTML += pollMarkup;
+});
+
+function vote(pollId, option) {
+    if (userVotes.has(pollId)) {
+        alert('You have already voted.');
+        return;
+    }
+    userVotes.add(pollId);
+    alert(`You voted for: ${option}`);
+}
+
+function hideMediaOptions() {
+    const mediaOptions = document.getElementById('mediaOptions');
+    mediaOptions.style.display = 'none';
+}
+
+function hidePollCard() {
+    const pollCard = document.getElementById('pollCard');
+    pollCard.style.display = 'none';
+}
+
+function hideEmojiPicker() {
+    const emojiPicker = document.getElementById('emojiPicker');
+    emojiPicker.style.display = 'none';
+}
+
+function getRandomColor() {
+    const colors = ['#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#A133FF', '#33FFA5'];
+    return colors[Math.floor(Math.random() * colors.length)];
+}
+
+// File input handling
+document.getElementById('fileInput').addEventListener('change', handleFileUpload);
+
+
+
+   </script>
+   
+
+</body>

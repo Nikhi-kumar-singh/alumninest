@@ -1,42 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Groups</title>
-    <link rel="stylesheet" href="/css/showgroup.css">
-</head>
+<% layout('layouts/boilerplate') %>
 <body>
-    <div class="container">
-        <h1>Groups</h1>
 
-        <% if (allGroup.length === 0) { %>
-            <p>No groups available. Please check back later!</p>
-        <% } else { %>
-            <% for(group of allGroup) { %>
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="group-name">Group Name: <%= group.groupName %></h2>
-                </div>
-                <div class="card-body">
-                    <p class="group-description">Description: <%= group.description %></p>
-                    <form action="/groups/join/<%= group._id %>" method="POST">
-                        <button type="submit" class="join-button">Join</button>
-                    </form>
-                </div>
-            </div>
-            <% } %>
-        <% } %>
-        
-        <div class="create-group">
-            <h2>Create a New Group</h2>
-            <form id="createGroupForm" action="/group/register" method="GET">
-                
-                <button type="submit">Create Group</button>
-            </form>
+  <div class="container my-5">
+    <div class="row mb-4">
+      <!-- Circular Boxes -->
+      <div class="col text-center">
+        <div class="circle-box">
+          <img src="https://via.placeholder.com/80" alt="Circle Image 1">
         </div>
+      </div>
+      <div class="col text-center">
+        <div class="circle-box">
+          <img src="https://via.placeholder.com/80" alt="Circle Image 2">
+        </div>
+      </div>
     </div>
     
-    <script src="/js/showgroup.js"></script>
+    <div class="row">
+      <!-- Already Joined Groups Section -->
+      <div class="col-md-6" id="joined-groups">
+        <h3 class="mb-4 group-h" style="color: #007bff;">Already Joined Groups</h3>
+        <% if (joinedGroups.length > 0) { %>
+            <% joinedGroups.forEach(function(group) { %>
+                <div class="card mb-3 group-card" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="<%= group.profilePhoto %>" class="img-fluid rounded-start" alt="Group Image">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= group.groupName %></h5>
+                                <p class="card-text"><%= group.description %></p>
+                                <form action="/groups/chat/<%= group._id %>" method="GET">
+                                    <button class="btn btn-primary open-btn">Open Group</button>   
+                                </form>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <p>You have not joined any groups yet.</p>
+        <% } %>
+    </div>
+    
+
+      <!-- Vertical Divider -->
+      <div class="col-md-1 vertical-divider"></div>
+
+      <!-- Join Groups Section -->
+      <div class="col-md-5" id="available-groups">
+        <h3 class="mb-4" style="color: #007bff;">Join Groups</h3>
+        <% if (notJoinedGroups.length > 0) { %>
+            <% notJoinedGroups.forEach(function(group) { %>
+        <div class="card mb-3 group-card" style="max-width: 540px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="<%= group.profilePhoto %>" class="img-fluid rounded-start" alt="Group Image">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title"><%= group.groupName %></h5>
+                <p class="card-text"><%= group.description %></p>
+                <form action="/groups/join/<%= group._id %>" method="POST">
+                    <button class="btn btn-primary join-btn">Join Group</button>
+                </form>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+        <% } else { %>
+          <h4>There are no available groups to join.</h4>
+        <% } %>
+        
+      </div>
+    </div>
+  </div>
+<form action="/groups/register" method="GET"><button class="floating-btn" id="create-group-btn">+</button></form>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>
