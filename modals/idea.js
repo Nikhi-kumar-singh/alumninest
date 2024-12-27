@@ -29,13 +29,13 @@ const IdeaSchema = new Schema({
   },
   idea_pdf: {
     type: String,
-    required: true,
+  
     description: "URL of the uploaded PDF document"
   },
   video_explanation: {
     type: String,
-    required: true,
-    trim: true,
+  
+
     description: "URL of the video explaining the idea"
   },
   expected_price: { type: Number, default: null },

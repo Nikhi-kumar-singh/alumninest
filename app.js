@@ -578,7 +578,7 @@ app.get('/startups/idea/register', isLoggedIn,async (req, res)=>{
 app.post('/startups/idea/submit', isLoggedIn, async (req, res) => {
   try {
     // Destructure form data from req.body
-    const { idea_title, description, impact, target_audience, expected_price, linkedin_profile, idea_pdf, video_explanation } = req.body;
+    const { idea_title, description, impact, target_audience,  idea_pdf, video_explanation, expected_price, linkedin_profile } = req.body;
 
     const newIdea = new Idea({
       idea_title:idea_title,
@@ -594,11 +594,12 @@ app.post('/startups/idea/submit', isLoggedIn, async (req, res) => {
     await newIdea.save();
 
 
-    res.send('created'); 
+    res.redirect('/startups') ;
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal Server Error'); // Handle error appropriately
   }
+
 });
 
 app.get('/startups', isLoggedIn, async (req,res)=>{
@@ -611,6 +612,97 @@ app.get('/startups', isLoggedIn, async (req,res)=>{
   });
 })
 
+//profile
+
+app.get('/profile',isLoggedIn, async (req, res) => {
+  try {
+      
+    let profile = null;
+
+    if (req.user.type === 'Student') {
+      profile = await Student.findOne({ email: req.user.email });
+    } else if (req.user.type === 'Alumni') {
+      profile = await Alumni.findOne({ email: req.user.email });
+    } else if (req.user.type === 'Faculty') {
+      profile = await Faculty.findOne({ email: req.user.email });
+    }
+
+    if (!profile) {
+      console.log("Profile not found for user:", req.user.email);
+      return res.status(404).send('Profile not found');
+    }
+
+    console.log("data:", profile.username);
+    console.log("email:", profile.email);
+
+      if (!profile) {
+          return res.status(404).send('Profile not found');
+      }
+
+      // Render the template and pass the profile data
+      res.render('profile/profile', { profile });
+      
+  } catch (error) {
+      console.error(error);
+      res.status(500).send('Server error');
+  }
+});
+
+//edit profile
+app.post('/save-profile', async (req, res) => {
+  try {
+    
+    const {
+      enrollmentYear,
+      graduationYear,
+      department,
+      email,
+      gender,
+      studentId,
+      degree,
+      skills,
+      interests
+    } = req.body;
+
+    console.log('Request body:', req.body);
+    let updateUser = "";
+    const ans1 = await Alumni.findOne({ email: req.user.email });
+    const ans2 = await Student.findOne({ email: req.user.email });
+    const ans3 = await Faculty.findOne({ email: req.user.email });
+
+    if (ans1 !== null) {
+      updateUser = ans1;
+    }
+    else if(ans2 !== null){
+      updateUser = ans2;
+    }
+    else if(ans3 !== null){
+      updateUser = ans3;
+    }
+
+    console.log('Data to save:', updateUser);
+
+      updateUser.enrollment_year=enrollmentYear,
+      updateUser.graduation_year=graduationYear,
+      updateUser.department=department,
+      updateUser.email=email,
+      updateUser.gender= gender,
+      updateUser.student_id=studentId,
+      updateUser.degree=degree,
+      updateUser.skills=skills,
+      updateUser.interests=interests
+
+    console.log('Data to save:', updateUser);
+    await updateUser.save();
+    // console.log('Profile saved successfully!');
+    
+    // Render the profile page after successfully saving the data
+    res.render('profile/profile', { profile: updateUser });
+  } catch (err) {
+    console.error('Error saving profile:', err);
+    res.status(500).send('Server error');
+  }
+});
 
 //job portal
 

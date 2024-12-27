@@ -1,11 +1,12 @@
 .a-body {
-    background: rgb(255, 255, 255); /* Semi-transparent background */
+    background: radial-gradient(circle at 10% 20%, rgb(31, 28, 28) 0%, rgb(0, 0, 0) 90%);
 }
 .alumni {
     border-radius: 15px; /* Rounded corners */
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5); /* Increased shadow effect */
-    background-color: #1c1c1c; /* Dark black background */
-    color: white; /* Text color */
+    margin-top: 100px;
+    background-color: #111111; /* Dark black background */
+    color: rgb(204, 201, 201); /* Text color */
     opacity: 0; /* Start invisible */
     transform: translateY(20px); /* Start slightly lower */
     animation: fadeInUp 0.8s forwards; /* Fade-in animation */
@@ -17,22 +18,22 @@
     }
 }
 .form-label {
-    color: white; /* Input section titles */
+    color: rgb(14, 0, 166); /* Input section titles */
 }
 .form-control, .form-select {
-    background-color: #2c2c2c; /* Match form background */
-    color: white; /* Input text color */
+    background-color: #191818; /* Match form background */
+    color: rgb(255, 248, 248); /* Input text color */
     border: none; /* Remove borders */
     transition: transform 0.2s; /* Smooth transition for scaling */
 }
 .form-control:focus, .form-select:focus {
-    background-color: #2c2c2c; /* Keep focus color same */
-    color: white; /* Input text color on focus */
-    box-shadow: 0 0 5px rgba(255, 193, 7, 0.5); /* Yellow glow on focus */
+    background-color: #1f1e1e; /* Keep focus color same */
+    color: rgb(246, 239, 239); /* Input text color on focus */
+    box-shadow: 0 0 5px rgba(6, 68, 255, 0.5); /* Yellow glow on focus */
     transform: scale(1.02); /* Slightly scale up on focus */
 }
 h3 {
-    color: #ffc107; /* Yellow title color */
+    color: #2c07ff; /* Yellow title color */
 }
 .gender-section {
     margin-bottom: 1rem;
@@ -41,7 +42,7 @@ h3 {
     margin-right: 10px; /* Space between gender labels */
 }
 .btn-register {
-    background-color: #ffc107; /* Stylish yellow background */
+    background-color: #4907ff; /* Stylish yellow background */
     color: black; /* Button text color */
     border: none; /* No border */
     border-radius: 25px; /* Rounded corners */
@@ -54,7 +55,7 @@ h3 {
 }
 
 ::placeholder {
-    color: gray !important;
+    color: rgb(72, 72, 72) !important;
     opacity: 1; /* Ensures that the color is not affected by the opacity */
 }
 
@@ -77,7 +78,7 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: aliceblue;
+    color: rgb(104, 100, 100);
 
 }
 

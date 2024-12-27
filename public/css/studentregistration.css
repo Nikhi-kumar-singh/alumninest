@@ -1,11 +1,11 @@
 body {
-    background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    background: radial-gradient(circle at 10% 20%, rgb(31, 28, 28) 0%, rgb(0, 0, 0) 90%);
 }
 .alumni {
     border-radius: 15px; /* Rounded corners */
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5); /* Increased shadow effect */
-    background-color: #1c1c1c; /* Dark black background */
-    color: white; /* Text color */
+    background-color: #171717; /* Dark black background */
+    color: rgb(234, 235, 241); /* Text color */
     opacity: 0; /* Start invisible */
     transform: translateY(20px); /* Start slightly lower */
     animation: fadeInUp 0.8s forwards; /* Fade-in animation */
@@ -17,7 +17,7 @@ body {
     }
 }
 .form-label {
-    color: white; /* Input section titles */
+    color: rgb(55, 12, 247); /* Input section titles */
 }
 .form-control, .form-select {
     background-color: #2c2c2c; /* Match form background */
@@ -28,20 +28,21 @@ body {
 .form-control:focus, .form-select:focus {
     background-color: #2c2c2c; /* Keep focus color same */
     color: white; /* Input text color on focus */
-    box-shadow: 0 0 5px rgba(255, 193, 7, 0.5); /* Yellow glow on focus */
+    box-shadow: 0 0 5px rgba(23, 7, 255, 0.5); /* Yellow glow on focus */
     transform: scale(1.02); /* Slightly scale up on focus */
 }
 h2 {
-    color: #ffc107; /* Yellow title color */
+    color: #2807ff; /* Yellow title color */
 }
 .gender-section {
     margin-bottom: 1rem;
+    color: #2807ff;
 }
 .gender-label {
     margin-right: 10px; /* Space between gender labels */
 }
 .btn-register {
-    background-color: #ffc107; /* Stylish yellow background */
+    background-color: #2c07ff; /* Stylish yellow background */
     color: black; /* Button text color */
     border: none; /* No border */
     border-radius: 25px; /* Rounded corners */
@@ -77,7 +78,7 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: aliceblue;
+    color: rgb(30, 48, 238);
 
 }
 
@@ -107,7 +108,7 @@ h2 {
 .n-body {
     transition: background-color 0.3s, color 0.3s;
     overflow-x: hidden; /* Prevent horizontal scrolling */
-}
+} 
 
 .navbar {
     border-radius: 15px;
@@ -152,7 +153,8 @@ h2 {
 
 .nav-link:hover::after {
     width: 100%; /* Full width on hover */
-}
+} */
+
 
 .theme-toggle {
     background: none;
@@ -196,7 +198,7 @@ h2 {
 .sidebar a {
     padding: 10px 15px;
     text-decoration: none;
-    color: white;
+    color: rgb(228, 226, 248);
     display: block;
     text-align: center; /* Center align the sidebar links */
     transition: background-color 0.3s;

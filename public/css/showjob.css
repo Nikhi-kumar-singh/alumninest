@@ -20,7 +20,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: aliceblue;
+    color: rgb(252, 252, 252);
 
 }
 
@@ -125,7 +125,7 @@
 }
 
 .nav-links a {
-    color: rgb(57, 175, 234);
+    color: rgb(255, 255, 255);
     text-decoration: none;
     padding: 8px 16px;
    
@@ -133,7 +133,7 @@
 }
 
 .nav-links a:hover {
-    background-color: #e8e8f1;
+    background-color: #1e1e70;
     border-radius: 4px;
 }
 
@@ -152,7 +152,7 @@
 }
 
 .dropdown-content a {
-    color: white;
+    color: rgb(255, 255, 255);
     padding: 10px;
     text-decoration: none;
     display: block;
@@ -176,7 +176,7 @@
 /* Toggle Side Menu */
 .side-menu {
     background-color: #1c1b1b;
-    color: white;
+    color: rgb(255, 255, 255);
     position: fixed;
     top: 60px;
     left: -200px;
@@ -200,7 +200,7 @@
 }
 
 .side-menu ul li a {
-    color: white;
+    color: rgb(237, 229, 229);
     text-decoration: none;
     padding: 10px;
     display: block;
@@ -240,7 +240,7 @@
         .glowing-line {
             width: 100vw; /* Use viewport width */
             height: 8px; /* Increased height of the glowing line */
-            background: rgba(173, 216, 230, 1); /* Light blue color */
+            background: rgb(114, 157, 173); /* Light blue color */
             box-shadow: none; /* Remove shadow glow */
             margin: 20px 0; /* Add margin to top and bottom */
         }
@@ -249,8 +249,8 @@
         .heading {
             text-align: center;
             font-size: 2.5rem; /* Adjust font size */
-            color: white;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Shadow effect */
+            color: rgb(241, 241, 241);
+            text-shadow: 2px 2px 5px rgba(134, 121, 121, 0.5); /* Shadow effect */
             margin-bottom: 20px; /* Space below the heading */
             width: 100%; /* Make sure it fits the screen */
         }
@@ -268,6 +268,7 @@
         }
 
         .card {
+            background-color: #000000;
             position: relative;
             min-width: 320px; /* Minimum width for the cards */
             height: 440px;
@@ -282,7 +283,7 @@
         /* Glowing effect on outer card hover */
         .card:hover {
             transform: translateY(-10px); /* Slight lift effect */
-            box-shadow: 0 0 25px rgba(0, 0, 139, 1),  /* Dark blue glow */
+            box-shadow: 0 0 25px rgb(2, 2, 200),  /* Dark blue glow */
                         0 0 35px rgba(0, 0, 139, 0.7); /* Softer glow */
         }
 
@@ -308,7 +309,7 @@
             left: 20px;
             right: 20px;
             bottom: 20px;
-            background: #161617;
+            background: #00000f;
             border-radius: 15px;
             display: flex;
             justify-content: center;
@@ -320,7 +321,7 @@
         /* Glow border only on inner card hover */
         .box:hover {
             transform: translateY(-10px); /* Optional: Slight lift effect */
-            box-shadow: 0 0 15px rgba(173, 216, 230, 1),  /* Light blue glow */
+            box-shadow: 0 0 15px rgb(195, 195, 195),  /* Light blue glow */
                         0 0 30px rgba(173, 216, 230, 0.5); /* Softer glow */
         }
 
@@ -334,7 +335,7 @@
             top: -10px;
             right: 30px;
             font-size: 8rem;
-            color: white;
+            color: rgb(13, 189, 189);
         }
 
         .content h3 {
@@ -368,7 +369,29 @@
 
         .content a:hover {
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
-            background: #fff;
-            color: #000;
+            background: #282323;
+            color: #fffbfb;
         }
-   
+        .submit-idea-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: rgb(244, 242, 242);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .submit-idea-btn:hover {
+            background-color: #0056b3;
+        }
+
+

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Profile Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: radial-gradient(circle at 10% 20%, rgb(40, 50, 60) 0%, rgb(0, 0, 0) 90%);
+            color: rgb(8, 142, 160);
+        }
+
+        .profile-container {
+            display: flex;
+            margin-top: 90px;
+        }
+
+        .profile-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: left;
+            background-color: rgb(0, 14, 166);
+            border-radius: 35px;
+            box-shadow: 0 0 15px rgba(6, 6, 6, 0.3);
+            width: 50%;
+            padding: 20px;
+            margin-right: 20px;
+            font-size: 20px;
+            transition: transform 0.4s, box-shadow 0.4s;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .profile-picture-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            background-color: #525252;
+            margin: 0 auto;
+            border: 5px solid #fff;
+        }
+
+        .boxer {
+            border: 0px solid black;
+            border-radius: 30px;
+            display: block;
+            padding: 30px;
+            background-color: rgb(2, 6, 25);
+            width: 450px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-picture {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .profile-picture:hover {
+            transform: rotate(0deg) scale(1.1);
+        }
+
+        .edit-profile-btn {
+            margin-top: 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .edit-profile-btn:hover {
+            background-color: #fff;
+            color: #84ff00;
+        }
+
+        .main-form {
+            background-color: rgb(36, 0, 214);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            margin-top: 90px;
+            padding: 30px;
+            width: 400%;
+            transition: transform 0.4s, box-shadow 0.4s;
+            display: none;
+            margin-bottom: 100px;
+        }
+
+        .main-form:hover {
+            transform: scale(1.003);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-control {
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .form-control:focus {
+            background-color: lightgray;
+            border-color: #007bff;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+        }
+
+        .btn-primary {
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container profile-container">
+        <!-- Profile Card -->
+        <div class="profile-card" id="profileCard">
+            <!-- <div class="profile-picture-container">
+                <img src="<%= profile.profile_picture %>" alt="Profile Picture" class="profile-picture" id="profilePicture">
+            </div> -->
+            <div class="profile-picture-container">
+                <% if (profile.profile_picture) { %>
+                  <img src="<%= profile.profile_picture %>" alt="Profile Picture" class="profile-picture" id="profilePicture">
+                <% } else { %>
+                  <img src="/images/default-profile-picture.png" alt="Default Profile Picture" class="profile-picture" id="profilePicture">
+                <% } %>
+              </div>
+              
+            <h4><strong id="profileName"><%= profile.name.first_name + " " + profile.name.last_name %></strong></h4>
+
+            <div class="boxer">
+                <div><p id="profileCollege"><strong style="color: rgb(1, 1, 18)><%= profile.college_name %></strong></p></div>
+                <div><p id="profileDepartment"><strong style="color: rgb(17, 20, 213);">Department:</strong> <%= profile.college_name %></p></div>
+                <div><p id="profileEmail"><strong style="color:rgb(17, 20, 213);">Email:</strong> <%= profile.email %></p></div>
+                <div><p id="profileGender"><strong style="color: rgb(17, 20, 213);">Gender:</strong> <%= profile.gender %></p></div>
+                <div><p id="profileStudentId"><strong style="color: rgb(17, 20, 213);">Student ID:</strong> <%= profile.student_id %></p></div>
+                <div><p id="profileEnrollmentYear"><strong style="color: rgb(17, 20, 213);">Enrollment Year:</strong> <%= profile.enrollment_year %></p></div>
+                <div><p id="profileGraduationYear"><strong style="color: rgb(17, 20, 213);">Graduation Year:</strong> <%= profile.graduation_year %></p></div>
+                <div><p id="profileDegree"><strong style="color:rgb(17, 20, 213)">Degree:</strong> <%= profile.degree %></p></div>
+                <div><p id="profileSkills"><strong style="color: rgb(17, 20, 213);">Skills:</strong> <%= profile.skills %></p></div>
+                <div><p id="profileInterests"><strong style="color:rgb(17, 20, 213);">Interests:</strong> <%= profile.interests %></p></div>
+                
+            </div>
+            <button class="btn btn-primary edit-profile-btn" onclick="toggleProfileForm()">Edit Profile</button>
+        </div>
+
+        <!-- Main Form (Initially Hidden) -->
+        <div class="main-form" id="profileForm">
+            <h4>Profile Information</h4>
+            <form id="profileFormFields" action="/save-profile" method="POST">
+                
+                <div class="form-group">
+                    <label for="enrollmentYear">Enrollment Year</label>
+                    <input type="number" class="form-control" id="enrollmentYear" name="enrollmentYear" value="<%= profile.enrollmentYear %>" style="background-color: darkgray;">
+                </div>
+                <div class="form-group">
+                    <label for="graduationYear">Graduation Year</label>
+                    <input type="number" class="form-control" id="graduationYear" name="graduationYear" value="<%= profile.graduationYear %>" style="background-color: darkgray;">
+                </div>
+                <div class="form-group">
+                    <label for="department">Department</label>
+                    <input type="text" class="form-control" id="department" name="department" value="<%= profile.department %>" style="background-color: darkgray;">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" value="<%= profile.email %>" style="background-color: darkgray;">
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <input type="text" class="form-control" id="gender" name="gender" value="<%= profile.gender %>" style="background-color: darkgray;">
+                </div>
+                <div class="form-group">
+                    <label for="studentId">Student ID</label>
+                    <input type="text" class="form-control" id="studentId" name="studentId" value="<%= profile.studentId %>" style="background-color: darkgray;">
+                </div>
+                <div class="form-group">
+                    <label for="degree">Degree</label>
+                    <input type="text" class="form-control" id="degree" name="degree" value="<%= profile.degree %>" style="background-color: darkgray;">
+                </div>
+                <div class="form-group">
+                    <label for="skills">Skills</label>
+                    <input type="text" class="form-control" id="skills" name="skills" value="<%= profile.skills %>" style="background-color: darkgray;">
+                </div>
+                <div class="form-group">
+                    <label for="interests">Interests</label>
+                    <input type="text" class="form-control" id="interests" name="interests" value="<%= profile.interests %>" style="background-color: darkgray;">
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleProfileForm() {
+            var profileCard = document.getElementById("profileCard");
+            var profileForm = document.getElementById("profileForm");
+            if (profileCard.style.display !== "none") {
+                profileCard.style.display = "none";
+                profileForm.style.display = "block";
+            } else {
+                profileCard.style.display = "block";
+                profileForm.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
